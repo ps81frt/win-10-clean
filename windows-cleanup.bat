@@ -77,7 +77,7 @@ del /q /f "C:\Windows\MEMORY.DMP" 2>nul
 del /q /f /s "%LOCALAPPDATA%\CrashDumps\*" 2>nul
 
 :: =========================
-:: 10. SEARCH INDEX (SAFE RESET CONTENT ONLY)
+:: 10. SEARCH INDEX
 :: =========================
 echo [10/12] Search index cleanup...
 del /q /f /s "C:\ProgramData\Microsoft\Search\Data\*" 2>nul
@@ -114,7 +114,7 @@ echo [13/13] Applying performance tweaks...
 :: --- Power plan High Performance ---
 powercfg -setactive SCHEME_MIN
 
-:: --- Reduce visual lag (best effort) ---
+:: --- Reduce visual lag  ---
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects" /v VisualFXSetting /t REG_DWORD /d 2 /f >nul 2>&1
 
 :: --- Disable Game DVR (background recording = lag) ---
@@ -133,7 +133,7 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplicat
 taskkill /f /im explorer.exe >nul 2>&1
 start explorer.exe
 
-:: Désactiver Superfetch (Windows 10 correct)
+:: Désactiver Superfetch
 sc stop SysMain >nul 2>&1
 sc config SysMain start= disabled >nul 2>&1
 
